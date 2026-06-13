@@ -14,12 +14,21 @@ The goal of this repository is to explore how algorithms behave in practice, not
   * Stress-tested against `std::sort`
   * Benchmarked with different compiler optimization levels (`-O2`, `-O3`)
   * Future plans:
-
     * Randomized Pivot Quicksort
     * Median-of-Three Quicksort
     * Merge Sort
     * Heap Sort
     * Performance on sorted, reverse-sorted, and duplicate-heavy inputs
+
+### Range Queries
+
+* Sparse Table (Range Minimum Query)
+
+  * Implementation of a Sparse Table for $O(1)$ query time after $O(n \log n)$ preprocessing.
+  * **Performance Analysis:** Observed massive speedups (up to 410x) over naive $O(n)$ queries.
+  * **Log Table Optimization:** Compared `log2()` calls against precomputed log tables; observed $\sim 1.28\text{x}$ improvement under `-O3` optimization.
+  * **Scale Testing:** Conducted large-scale stress tests with $\sim 250\text{M}$ elements and $\sim 256\text{M}$ queries, noting that table construction dominates the total runtime at extreme scales.
+  * **Verification:** Used a custom hashing mechanism to validate correctness across massive datasets while minimizing memory overhead.
 
 ## Repository Structure
 
@@ -29,6 +38,10 @@ The goal of this repository is to explore how algorithms behave in practice, not
 │   ├── README.md
 │   ├── quicksort_first_element.cpp
 │   ├── test_generator.cpp
+│
+├── sparse_tables/
+│   ├── sparse_min.cpp
+│   └── sparse_min_log_test.cpp
 │
 └── clock.cpp
 ```
